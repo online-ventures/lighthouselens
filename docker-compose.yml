@@ -1,0 +1,36 @@
+version: '3.2'
+volumes:
+  postgres-data:
+  bundle-cache:
+services:
+  app:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    environment:
+      - RAILS_ENV=development
+      - THOR_MERGE=vim
+    ports:
+      - "3200:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/lhl
+      - bundle-cache:/bundle
+    stdin_open: true
+    tty: true
+  db:
+    image: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5482:5432"
+  # bundle:
+  #   # 'image' will vary depending on your docker-compose
+  #   # project name. You may need to run `docker-compose build web`
+  #   # before this works.
+  #   image: cthdb_web
+  #   command: echo I'm a little data container, short and stout...
+  #   volumes:
+  #     - /bundle
+  #     # This tells the web container to mount the `bundle` images'
+  #     # /bundle volume to the `web` containers /bundle path.
