@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Lighthouselens</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+doctype html
+html
+  head
+    title Lighthouselens
+    = csrf_meta_tags
+    = csp_meta_tag
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
 
-  <body>
-    <%= yield %>
-  </body>
-</html>
+  body
+    = yield
