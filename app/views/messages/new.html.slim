@@ -1,0 +1,32 @@
+div class="contact-us"
+  h1 Contact Us
+
+  = image_tag('contact/museum.jpg', border: '2')
+
+  - if flash[:success]
+    div class="success"
+      p = flash[:success]
+
+  p The Maritime Exchange Museum specializes in collecting and restoring lighthouse antiques.  If you know of any items that may be in need of rescue, restoration and conservation please contact us.
+
+  p
+    strong Contact:
+    |  Steve Gronow
+
+  p
+    strong Phone:
+    |  (810) 599 - 5147
+
+  div class="contact-form"
+    = form_for @message do |f|
+      - if @errors
+        div class="error"
+          p Please correct the following:
+          ul
+          - @errors.each do |e|
+            li = e
+
+      = f.text_field :name, placeholder: 'Your name'
+      = f.email_field :email, placeholder: 'your@email.com'
+      = f.text_area :body, placeholder: 'Write your questions here'
+      = f.submit 'Send'

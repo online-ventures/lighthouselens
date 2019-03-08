@@ -1,7 +1,16 @@
 doctype html
 html
   head
-    title Lighthouselens
+    script{async src="https://www.googletagmanager.com/gtag/js?id=UA-6337190-3"}
+    javascript:
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-6337190-3');
+    script src='https://www.google.com/recaptcha/api.js?render=6LeFPX0UAAAAAKeE7YyMkmFykrvFHSI_wIVEocNc'
+    title Lighthouse Antiques, Lenses, Nautical Museum
+    meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
     = csrf_meta_tags
     = csp_meta_tag
 
@@ -9,4 +18,30 @@ html
     = javascript_include_tag 'application'
 
   body
-    = yield
+    div id="outer"
+      div id="header"
+        div id="news"
+          | &nbsp;
+        div class="nav"
+          = link_to 'Home', '/', {class: 'first button'}
+          = link_to 'Articles', '/articles', {class: 'button'}
+          = link_to 'Gallery', '/gallery', {class: 'button'}
+          = link_to 'About', '/about', {class: 'button'}
+          = link_to 'Contact', '/contact', {class: 'button'}
+      div id="main"
+        div class="nav"
+          ul
+            - @categories.each do |type|
+              li
+                = link_to(type.name, type.id.to_s)
+        div id="content"
+          = yield
+        div id="footer"
+          p Copyright &copy; 2009 Maritime Exchange Museum.  All rights reserved.
+          p
+            | Check out Steve's other pursuits at 
+            a href="http://chestnutdev.com" Chestnut Development
+    javascript:
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6LeFPX0UAAAAAKeE7YyMkmFykrvFHSI_wIVEocNc', {action: 'homepage'})
+      });
