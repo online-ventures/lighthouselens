@@ -1,0 +1,14 @@
+- content_for :title, @category.name
+h1 = @category.name
+
+- @items.each do |item|
+  div class="itemRow"
+    div class="itemThumb"
+      a href="#{item_path(item)}"
+        = image_tag(url_for(item.main_photo.file), border: '0')
+    div class="itemDesc"
+      a href="#{item_path(item)}"
+        h2 = item.title
+      p = pretty_price item.price
+
+p &nbsp;

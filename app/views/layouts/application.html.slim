@@ -9,7 +9,8 @@ html
 
       gtag('config', 'UA-6337190-3');
     script src='https://www.google.com/recaptcha/api.js?render=6LeFPX0UAAAAAKeE7YyMkmFykrvFHSI_wIVEocNc'
-    title Lighthouse Antiques, Lenses, Nautical Museum
+    title
+      = yield(:title) || 'Lighthouse Antiques, Lenses, Nautical Museum'
     meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
     = csrf_meta_tags
     = csp_meta_tag
@@ -31,9 +32,9 @@ html
       div id="main"
         div class="nav"
           ul
-            - @categories.each do |type|
+            - @categories.each do |category|
               li
-                = link_to(type.name, type.id.to_s)
+                = link_to category.name, categories_path(category.id)
         div id="content"
           = yield
         div id="footer"

@@ -3,6 +3,7 @@ class MailgunService
 
   class << self
     def send_contact_email(params)
+      raise 'Recipient not set' unless recipient
       params[:body] = convert_text_to_html(params[:body])
       html = render_html(template: 'contact', data: params)
       message = build_message(params, html)
@@ -15,9 +16,13 @@ class MailgunService
       msg.from 'support@lighthouselens.com', 'full_name' => 'lighthouselens.com'
       msg.subject 'Lighthouse Lens message'
       msg.reply_to data[:email]
-      msg.add_recipient(:to, nick)
+      msg.add_recipient(:to, ENV['CONTACT_RECIPIENT'])
       msg.body_html html
       msg
+    end
+
+    def recipient
+      ENV['CONTACT_RECIPIENT']
     end
 
     def client
@@ -26,14 +31,6 @@ class MailgunService
 
     def domain
       'mg.lighthouselens.com'
-    end
-
-    def nick
-      'Nick Gronow <mail@gronows.com>'
-    end
-
-    def steve
-      'Steve Gronow <steviegronow@comcast.net>'
     end
 
     def convert_text_to_html(text)

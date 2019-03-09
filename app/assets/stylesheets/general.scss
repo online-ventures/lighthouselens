@@ -193,6 +193,7 @@ td {
     width: 80%;
   }
 }
+
 .success {
   background-color: #aacea9;
   margin: 0.5em 0;
@@ -202,4 +203,115 @@ td {
   width: 280px;
   text-align: center;
   font-size: 1.1em;
-vertical-align: middle;}
+  vertical-align: middle;
+}
+
+.itemRow {
+  background-color: #999999;
+  padding: 5px;
+  margin-bottom: 5px;
+  height: 180px;
+  background-image: image-url('items/itemRow.jpg');
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+}
+
+.itemThumb {
+  width: 120px;
+  height: 180px;
+  display: table;
+  float: left;
+
+  a {
+    height: 180px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  img {
+    max-width: 120px;
+    max-height: 180px;
+    width: auto;
+    height: auto;
+    display: inline-block;
+  }
+}
+
+.itemDesc {
+  float: right;
+  width: 562px;
+  text-align: center;
+  padding-top: 45px;
+
+  p {
+    font-weight: bold;
+    margin-top: 40px;
+    font-size: 18px;
+  }
+}
+div.sectionHeading {
+  font-size: 14px;
+  font-weight: bold;
+  color: #A49757;
+  background-color: #4A0000;
+  padding-top: 3px;
+  padding-right: 12px;
+  padding-bottom: 3px;
+  padding-left: 12px;
+}
+div.sectionContent {
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-right-color: #A08958;
+  border-bottom-color: #A08958;
+  border-left-color: #A08958;
+  padding-top: 5px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+p.photos {
+  margin-bottom: 10px;
+  text-align: center;
+
+  img {
+    max-height: 400px;
+    max-width: 100%;
+  }
+}
+#purchaseTable   td {
+  color: #4A0000;
+  font-weight: bold;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+#purchaseTable {
+  margin-right: auto;
+  margin-left: auto;
+}
+input.textField  {
+  width: 250px;
+  background-color: #BAAD66;
+  border: 1px solid #827B48;
+  padding: 3px;
+}
+input.button {
+  color: #A08958;
+  background-color: #710000;
+  padding:0px 10px;
+  border: 1px solid #4A0000;
+  font-weight: bold;
+}
+#contact-info {
+  margin: 5px auto;
+}
+#contact-info th {
+  font-weight: bold;
+  padding: 3px 10px;
+}
+#contact-info td {
+  padding: 3px 10px;
+}
