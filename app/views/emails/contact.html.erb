@@ -5,8 +5,11 @@
   </head>
   <body>
     <h2>New message received from Lighthouse Lens</h2>
+    <p><b>Item:</b> <%= @item.title %></p>
     <p style="font-weight: bold; color: #888; font-size: 1.1em"><%= @name %> says:</p>
     <p><%= @body %></p>
+    <% if @item %>
+    <% end %>
     <p style="font-style: italic; color: #444">You can reply to this email to respond to <%= @name %>.</p>
   </body>
 </html>

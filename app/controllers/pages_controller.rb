@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
-  def home
-  end
-
-  def articles
+  def not_found
+    render status: :not_found
   end
 end

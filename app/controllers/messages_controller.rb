@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   def new
-    @message = Message.new
+    @message = Message.new item_id: params[:id]
   end
 
   def create
@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:name, :email, :body)
+    params.require(:message).permit(:name, :email, :body, :item_id)
   end
 
   def save_inquiry
@@ -27,7 +27,7 @@ class MessagesController < ApplicationController
       name: message_params[:name],
       email: message_params[:email],
       comments: message_params[:body],
-      item_id: params[:id]
+      item_id: message_params[:item_id]
     )
   end
 end

@@ -5,6 +5,7 @@ class MailgunService
     def send_contact_email(params)
       raise 'Recipient not set' unless recipient
       params[:body] = convert_text_to_html(params[:body])
+      params[:item] = Item.find(params[:item_id]) if params[:item_id]
       html = render_html(template: 'contact', data: params)
       message = build_message(params, html)
       result = client.send_message(domain, message).to_h!

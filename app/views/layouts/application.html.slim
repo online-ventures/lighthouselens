@@ -10,7 +10,7 @@ html
       gtag('config', 'UA-6337190-3');
     script src='https://www.google.com/recaptcha/api.js?render=6LeFPX0UAAAAAKeE7YyMkmFykrvFHSI_wIVEocNc'
     title
-      = yield(:title) || 'Lighthouse Antiques, Lenses, Nautical Museum'
+      = content_for?(:title) ? yield(:title) : 'Lighthouse Antiques, Lenses, Nautical Museum'
     meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
     = csrf_meta_tags
     = csp_meta_tag

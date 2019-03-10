@@ -1,3 +1,4 @@
+- content_for :title, @item.title
 h1 = @item.title
 p class="photos"
   a href="#{url_for(@item.main_photo.file)}" target="_blank" title="View at full size"

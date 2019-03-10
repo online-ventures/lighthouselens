@@ -29,4 +29,5 @@ div class="contact-us"
       = f.text_field :name, placeholder: 'Your name'
       = f.email_field :email, placeholder: 'your@email.com'
       = f.text_area :body, placeholder: 'Write your questions here'
+      = f.hidden_field :item_id
       = f.submit 'Send'
