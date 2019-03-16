@@ -1,7 +1,0 @@
-development:
-  adapter: postgresql
-  database: lhl
-  username: postgres
-  password:
-  host: db
-  port: 5432
