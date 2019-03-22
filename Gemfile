@@ -33,6 +33,10 @@ gem 'mailgun-ruby', '~>1.1.6'
 # Image processing - for active storage variants
 gem 'image_processing', '~> 1.2'
 
+# Authentication
+gem 'omniauth', '~> 1.6.1'
+gem 'omniauth-auth0', '~> 2.0.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
