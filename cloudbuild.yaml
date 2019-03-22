@@ -1,24 +1,36 @@
 steps:
+# Get the previous docker build.  Allows using it as a cache-from
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      docker pull gcr.io/$PROJECT_ID/$REPO_NAME:latest || exit 0
+
+# Get the repo
 - name: gcr.io/cloud-builders/git
   args:
-  args: [
-    'clone',
-    'https://github.com/online-ventures/$REPO_NAME.git'
-    ]
+  - clone
+  - 'https://github.com/online-ventures/$REPO_NAME.git'
+
+# Build the new docker image
 - name: gcr.io/cloud-builders/docker
   args: [
     'build',
     '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME:latest',
+    '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA',
     '-f', 'deploy/Dockerfile',
     '--cache-from', 'gcr.io/$PROJECT_ID/$REPO_NAME:latest',
     '.'
     ]
   timeout: 600s
+
+# Push it to gcr.io as latest
 - name: gcr.io/cloud-builders/docker
-  args: [
-    'push',
-    'gcr.io/$PROJECT_ID/$REPO_NAME:latest'
-    ]
-images: [
-  'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
-  ]
+  args:
+  - push
+  - 'gcr.io/$PROJECT_ID/$REPO_NAME:latest'
+
+# Save this build as well according to commit sha
+images:
+- 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
