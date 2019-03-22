@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+puts "Starting Rails in $RAILS_ENV environment"
 
 rails db:migrate
 
@@ -13,4 +13,4 @@ fi
 
 rails assets:precompile
 
-rails server
+rails server -b 0.0.0.0 -p 3000
