@@ -32,5 +32,7 @@ RUN bundle install
 # app files
 COPY . $APP_HOME
 
-# startup rails server
-CMD bundle exec rails server
+# Entrypoint
+COPY deploy/docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]

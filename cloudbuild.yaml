@@ -3,7 +3,7 @@ steps:
   args:
   args: [
     'clone',
-    'https://github.com/online-ventures/lighthouselens.git'
+    'https://github.com/online-ventures/$REPO_NAME.git'
     ]
 - name: gcr.io/cloud-builders/docker
   args: [
@@ -19,13 +19,6 @@ steps:
     'push',
     'gcr.io/$PROJECT_ID/$REPO_NAME:latest'
     ]
-- name: 'gcr.io/cloud-builders/kubectl'
-  args:
-    - delete
-    - pods
-    - -l
-    - app=lighthouselens
-    - --namespace=default
 images: [
-  'gcr.io/$PROJECT_ID/$REPO_NAME'
+  'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
   ]
