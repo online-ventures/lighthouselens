@@ -1,6 +1,6 @@
 #!/bin/bash
 
-puts "Starting Rails in $RAILS_ENV environment"
+echo "Starting Rails in $RAILS_ENV environment"
 
 rails db:migrate
 
