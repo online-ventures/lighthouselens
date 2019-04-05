@@ -28,5 +28,18 @@ module Lighthouselens
     # the framework and any gems in your application.
 
     config.autoload_paths << Rails.root.join('app/services')
+
+    # Cookie support
+    config.session_store :cookie_store, key: '_lighthouselens_session'
+    config.middleware.use ActionDispatch::Cookies # Required for all session management
+    config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
+
+    # Raven for sentry
+    Raven.configure do |config|
+      config.dsn = 'https://f5b4ad48a0924573acfa63590e414d65:96038ef7aaaf4df5845cfa38d78ff0df@sentry.io/1420700'
+    end
+
+    # Active job uses sidekiq
+    config.active_job.queue_adapter = :sidekiq
   end
 end

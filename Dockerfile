@@ -28,10 +28,8 @@ ENV BUNDLE_PATH=/bundle
 ENV BUNDLE_BIN=/bundle/bin
 ENV PATH="${BUNDLE_BIN}:${PATH}"
 
-# app files
-COPY . $APP_HOME
-
 # Entrypoint
-COPY scripts/docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["scripts/docker-entrypoint.sh"]
+
+# App files
+COPY . $APP_HOME

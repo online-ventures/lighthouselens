@@ -3,28 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
-# Use sqlite3 as the database for Active Record
 gem 'pg'
-# Use Puma as the app server
 gem 'puma', '~> 3.11'
-# Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
-# Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
-# For faster template authoring
 gem 'slim-rails'
 
 # Mailgun for emailing
@@ -33,9 +18,29 @@ gem 'mailgun-ruby', '~>1.1.6'
 # Image processing - for active storage variants
 gem 'image_processing', '~> 1.2'
 
+# Active storage - Digital Ocean spaces support
+gem 'aws-sdk-s3', '~> 1'
+
 # Authentication
 gem 'omniauth', '~> 1.6.1'
 gem 'omniauth-auth0', '~> 2.0.0'
+gem 'jwt'
+
+# Services
+gem 'simple_command'
+
+# Sentry
+gem "sentry-raven"
+
+# Pagination
+gem 'kaminari'
+
+# Background jobs
+gem 'sidekiq'
+gem 'redis-namespace'
+
+# Console
+gem 'awesome_print'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

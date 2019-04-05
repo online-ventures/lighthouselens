@@ -4,16 +4,24 @@ class Item < ApplicationRecord
   has_many :photos, -> { order(featured: :desc, id: :asc) }
   has_many :buyers
 
+  has_many_attached :images
+
   scope :published, -> { where(published: true) }
 
   validate :must_have_photo_to_publish
 
   def main_photo
-    @main_photo ||= photos.limit(1).first
+    images.first
   end
 
   def check_photo_count
-    update(published: false) if photos.count.none?
+    update(published: false) if images.count.none?
+  end
+
+  def blobs
+    return @blobs if @blobs
+    blob_ids = images.pluck :blob_id
+    @blobs = ActiveStorage::Blob.where(id: blob_ids)
   end
 
   private

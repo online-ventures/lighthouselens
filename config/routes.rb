@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
+
+  # Auth0
+  get 'login', to: redirect('auth/auth0')
+  get 'logout', to: 'auth0#logout'
+  get 'auth/auth0/callback', to: 'auth0#callback', as: 'auth_callback'
+  get 'auth/failure', to: 'auth0#failure', as: 'auth_failure'
+  get 'auth/unauthorized', to: 'auth0#unauthorized', as: 'auth_unauthorized'
+
   # Support old php routes for a while.  Redirect them.
   get 'index.php', to: redirect('/')
   get 'items/list.php', to: redirect { |_p, r| "categories/#{r.GET[:id]}/items" }
   get 'items/index.php', to: redirect { |_p, r| "items/#{r.GET[:id]}" }
+
+  get 'admin', to: 'admin#index', as: 'admin'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'pages#home'

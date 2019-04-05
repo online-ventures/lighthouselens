@@ -1,8 +1,8 @@
 - content_for :title, @item.title
 h1 = @item.title
 p class="photos"
-  a href="#{url_for(@item.main_photo.file)}" target="_blank" title="View at full size"
-    = image_tag url_for(@item.main_photo.file)
+  a href="#{url_for(@item.main_photo)}" target="_blank" title="View at full size"
+    = image_tag url_for(@item.main_photo)
 p &nbsp;
 
 div class="sectionHeading" Description
@@ -33,9 +33,9 @@ p &nbsp;
 div class="sectionHeading" Pictures
 
 div class="sectionContent"
-    - @item.photos.each do |photo|
+    - @item.images.each do |image|
       p class="photos"
-        a href="#{url_for(photo.file)}" target="_blank" title="View at full size"
-          = image_tag url_for(photo.file)
+        a href="#{url_for(image)}" target="_blank" title="View at full size"
+          = image_tag url_for(image)
 
 p &nbsp;

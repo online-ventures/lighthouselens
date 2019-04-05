@@ -1,0 +1,39 @@
+doctype html
+html.no-js
+  head
+    title Johns Pack and Ship - Login Failure
+    meta name= 'viewport' content="width=device-width, initial-scale=1.0, user-scalable=no"
+    = stylesheet_link_tag 'admin', media: 'all', "data-turbolinks-track" => true
+    = javascript_include_tag "https://cdn.ravenjs.com/3.13.1/raven.min.js", crossorigin: "anonymous"
+    javascript:
+      Raven.config('https://756f6f0b79c246ac96e9c275c2ab37b6@sentry.io/153313').install();
+    = javascript_include_tag "admin", "data-turbolinks-track" => true
+    link rel="shortcut icon" href="#{image_path 'header-logo.png'}"
+  body class="#{params[:action]} #{params[:controller]} admin"
+    .container
+      header.centered-navigation role="banner"
+        .centered-navigation-wrapper
+          a.mobile-logo href="#{root_path}"
+            = image_tag 'header-logo.png'
+          nav role="navigation"
+            ul#js-centered-navigation-menu.centered-navigation-menu.show
+              li.nav-link Error
+              li.nav-link.logo
+                a.logo href="#{root_path}"
+                  = image_tag 'header-logo.png'
+              - if @current_user
+                li.nav-link
+                  = link_to 'Logout', logout_path
+              - else
+                li.nav-link Almost There
+      div class="flash-notice"
+        span
+          = yield(:error)
+      .main
+        p.center
+          = yield(:message)
+        - if content_for? :login_button
+          p.center Try logging in again after you fixed the problem.
+          p.center
+            = link_to 'Login', login_path, {class: 'button', style: 'margin: 0'}
+      footer.footer role="contentinfo"

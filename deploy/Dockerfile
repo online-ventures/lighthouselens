@@ -33,6 +33,4 @@ RUN bundle install
 COPY . $APP_HOME
 
 # Entrypoint
-COPY deploy/docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["deploy/docker-entrypoint.sh"]

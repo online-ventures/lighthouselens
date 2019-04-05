@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_09_220510) do
+ActiveRecord::Schema.define(version: 2019_04_05_114527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 2019_03_09_220510) do
     t.integer "price"
     t.boolean "published"
     t.string "comments"
-    t.string "main_photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -68,6 +67,19 @@ ActiveRecord::Schema.define(version: 2019_03_09_220510) do
     t.integer "rank"
     t.string "name"
     t.boolean "featured", default: false
+  end
+
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "auth_id"
+    t.jsonb "data", default: {}
+    t.string "permissions", default: [], array: true
+    t.jsonb "preferences", default: {}, null: false
+    t.index ["auth_id"], name: "index_users_on_auth_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
