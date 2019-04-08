@@ -4,10 +4,8 @@ volumes:
   redis-data:
   bundle-cache:
 services:
-  app:
-    build:
-      context: .
-      dockerfile: ./docker/dev/Dockerfile
+  rails:
+    image: lighthouselens/rails
     environment:
     - RAILS_ENV=development
     - EDITOR=vim
@@ -28,6 +26,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/dev/Dockerfile
+    image: lighthouselens/rails
     command: bundle exec sidekiq
     environment:
       - RAILS_ENV=development

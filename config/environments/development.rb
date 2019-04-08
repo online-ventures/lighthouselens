@@ -64,4 +64,7 @@ Rails.application.configure do
   logger.formatter        = config.log_formatter
   config.logger           = ActiveSupport::TaggedLogging.new(logger)
   config.colorize_logging = true
+
+  # SASS
+  config.sass.inline_source_maps = true
 end
