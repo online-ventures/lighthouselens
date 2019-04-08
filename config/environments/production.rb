@@ -87,4 +87,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Raven for sentry
+  Raven.configure do |config|
+    config.dsn = Rails.application.credentials.sentry.dns
+  end
 end
