@@ -26,8 +26,7 @@ ENV RACK_ENV production
 # setup bundler
 COPY Gemfile* $APP_HOME/
 ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile
-RUN bundle install --jobs 20 --retry 5 --without development test
-ENV PATH="${BUNDLE_BIN}:${PATH}"
+RUN bundle install --jobs 10 --retry 5 --without development test
 
 # Document what port should be exposed
 EXPOSE 3000
