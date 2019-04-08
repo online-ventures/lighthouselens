@@ -2,8 +2,6 @@
 
 # Context info
 echo "Entrypoint starting directory: $(pwd)"
-echo "Directory contents"
-ls
 echo "Rails environment: $RAILS_ENV"
 
 # Database migrations
@@ -21,6 +19,11 @@ else
   # Rails
   echo "Precompile assets"
   bundle exec rails assets:precompile
+
+  # Copy public assets to nginx
+  if [ -d "/mnt/html" ]; then
+    cp -r public/* /mnt/html/
+  fi
 
   echo "Start puma server"
   bundle exec puma -C config/puma.rb
