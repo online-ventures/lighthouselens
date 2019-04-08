@@ -1,21 +1,24 @@
 #!/bin/bash
 
-echo "Starting Rails in $RAILS_ENV environment"
+# Context info
+echo "Entrypoint starting directory: $(pwd)"
+echo "Directory contents"
+ls -al
+echo "Rails environment: $RAILS_ENV"
 
+# Database migrations
 echo "Running db:migrate"
 bundle exec rails db:migrate
-
 if [[ $? != 0 ]]; then
-  echo
   echo "== Failed to migrate. Running setup first."
-  echo
   bundle exec rails db:setup && bundle exec rails db:migrate
 fi
 
+# Sidekiq
 if [[ $@ = 'sidekiq' ]]; then
   bundle exec sidekiq
 else
-  # Precompile assets here
+  # Rails
   echo "Precompile assets"
   bundle exec rails assets:precompile
 
