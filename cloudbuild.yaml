@@ -19,7 +19,7 @@ steps:
     'build',
     '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME:latest',
     '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA',
-    '-f', 'deploy/Dockerfile',
+    '-f', 'docker/app/Dockerfile',
     '--cache-from', 'gcr.io/$PROJECT_ID/$REPO_NAME:latest',
     '.'
     ]
