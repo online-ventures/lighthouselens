@@ -3,8 +3,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
 
   # Sidekiq
-  mount Sidekiq::Web => '/sidekiq'
-  # mount Sidekiq::Web => '/sidekiq', :constraints => SidekiqConstraint.new
+  mount Sidekiq::Web => '/sidekiq', :constraints => SidekiqConstraint.new
 
   # Auth0
   get 'login', to: redirect('auth/auth0')

@@ -33,8 +33,8 @@ class Auth0Controller < ApplicationController
   private
 
   def logout_url
-    domain = Rails.application.credentials.auth0_domain
-    client_id = Rails.application.credentials.auth0_client
+    domain = Rails.application.credentials.auth0[:domain]
+    client_id = Rails.application.credentials.auth0[:client]
     request_params = {
       returnTo: root_url,
       client_id: client_id
