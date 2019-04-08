@@ -5,6 +5,7 @@ redis = {
   url: "redis://#{config[:host]}:#{config[:port]}",
   namespace: config[:namespace]
 }
+redis[:password] = config[:password] if config[:password]
 
 Sidekiq.configure_server do |config|
   config.redis = redis
