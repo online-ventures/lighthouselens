@@ -3,7 +3,7 @@
 # Context info
 echo "Entrypoint starting directory: $(pwd)"
 echo "Directory contents"
-ls -al
+ls
 echo "Rails environment: $RAILS_ENV"
 
 # Database migrations
