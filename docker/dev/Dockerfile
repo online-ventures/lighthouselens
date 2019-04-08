@@ -28,6 +28,9 @@ ENV BUNDLE_PATH=/bundle
 ENV BUNDLE_BIN=/bundle/bin
 ENV PATH="${BUNDLE_BIN}:${PATH}"
 
+# Document what port should be exposed
+EXPOSE 3000
+
 # Entrypoint
 ENTRYPOINT ["docker/dev/entrypoint.sh"]
 

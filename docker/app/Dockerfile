@@ -28,11 +28,11 @@ COPY Gemfile* $APP_HOME/
 RUN bundle install --jobs 20 --retry 5 --without development test
 ENV PATH="${BUNDLE_BIN}:${PATH}"
 
-# app files
-COPY . $APP_HOME
-
 # Document what port should be exposed
 EXPOSE 3000
 
 # Entrypoint
 ENTRYPOINT ["docker/app/entrypoint.sh"]
+
+# App files
+COPY . $APP_HOME
