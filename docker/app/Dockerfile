@@ -32,7 +32,8 @@ ENV PATH="${BUNDLE_BIN}:${PATH}"
 EXPOSE 3000
 
 # Entrypoint
-ENTRYPOINT ["docker/app/entrypoint.sh"]
+COPY ./docker/app/entrypoint.sh /
+ENTRYPOINT ["/entrypoint.sh"]
 
 # App files
 COPY . $APP_HOME
