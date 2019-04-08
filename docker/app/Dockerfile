@@ -15,7 +15,7 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y vim
 
 # app directory
-ENV APP_HOME /var/www/app
+ENV APP_HOME /app
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
