@@ -18,7 +18,7 @@ div class="contact-us"
     |  (810) 599 - 5147
 
   div class="contact-form"
-    = form_for @message do |f|
+    = form_for @inquiry do |f|
       - if @errors
         div class="error"
           p Please correct the following:
@@ -28,6 +28,6 @@ div class="contact-us"
 
       = f.text_field :name, placeholder: 'Your name'
       = f.email_field :email, placeholder: 'your@email.com'
-      = f.text_area :body, placeholder: 'Write your questions here'
+      = f.text_area :comments, placeholder: 'Write your questions here'
       = f.hidden_field :item_id
       = f.submit 'Send'

@@ -1,15 +1,25 @@
 class MailgunService
-  @@from = 'Lighthouselens.com <support@lighthouselens.com>'
-
   class << self
-    def send_contact_email(params)
+    def send_contact_email(inquiry_id)
       raise 'Recipient not set' unless recipient
-      params[:body] = convert_text_to_html(params[:body])
-      params[:item] = Item.find(params[:item_id]) if params[:item_id]
-      html = render_html(template: 'contact', data: params)
-      message = build_message(params, html)
-      result = client.send_message(domain, message).to_h!
-      Rails.logger.info "Sent an email to Mailgun.  Received message: #{result['message']}"
+      inquiry = Inquiry.find inquiry_id
+      data = inquiry.slice(:name, :email, :comments, :item_id)
+      data[:comments] = convert_text_to_html(data[:comments])
+      data[:item] = Item.find(data[:item_id]) if data[:item_id]
+      html = render_html(template: 'contact', data: data)
+      message = build_message(data, html)
+      send_message message
+    end
+
+    def send_message(message)
+      response = client.send_message(domain, message)
+      InquiryResponse.create(
+        inquiry: inquiry,
+        code: response.code,
+        message: response.to_h['message']
+      )
+      Rails.logger.info "Sent an email to Mailgun.  Received code: #{response.code}"
+      raise 'Mailgun failed to queue message' unless response.code.between?(200, 299)
     end
 
     def build_message(data, html)
@@ -17,7 +27,7 @@ class MailgunService
       msg.from 'support@lighthouselens.com', 'full_name' => 'lighthouselens.com'
       msg.subject 'Lighthouse Lens message'
       msg.reply_to data[:email]
-      msg.add_recipient(:to, ENV['CONTACT_RECIPIENT'])
+      msg.add_recipient(:to, recipient)
       msg.body_html html
       msg
     end

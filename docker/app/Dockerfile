@@ -15,21 +15,27 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y vim
 
 # app directory
-ENV APP_HOME /app
+ENV APP_HOME /var/www/app
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
+# Production build
+ENV RAILS_ENV production
+ENV RACK_ENV production
+
 # setup bundler
 COPY Gemfile* $APP_HOME/
-ENV GEM_HOME=/bundle
-ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile
-ENV BUNDLE_JOBS=2
-ENV BUNDLE_PATH=/bundle
-ENV BUNDLE_BIN=/bundle/bin
+RUN bundle install --jobs 20 --retry 5 --without development test
 ENV PATH="${BUNDLE_BIN}:${PATH}"
 
-# Entrypoint
-ENTRYPOINT ["scripts/docker-entrypoint.sh"]
-
-# App files
+# app files
 COPY . $APP_HOME
+
+# Precompile assets here
+RUN rails assets:precompile
+
+# Document what port should be exposed
+EXPOSE 3000
+
+# Entrypoint
+ENTRYPOINT ["docker/app/docker-entrypoint.sh"]

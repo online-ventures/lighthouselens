@@ -12,8 +12,5 @@ if [[ $? != 0 ]]; then
   rails db:setup && rails db:migrate
 fi
 
-echo "Precompile assets"
-rails assets:precompile
-
-echo "Start rails server"
-rails server -b 0.0.0.0 -p 3000
+echo "Start puma server"
+bundle exec puma -C config/puma.rb

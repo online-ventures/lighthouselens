@@ -1,17 +1,16 @@
 class MessagesController < ApplicationController
   def new
-    @message = Message.new item_id: params[:id]
+    @inquiry = Inquiry.new item_id: params[:id]
   end
 
   def create
-    @message = Message.new message_params
-    if @message.valid?
-      save_inquiry
-      MailgunService.send_contact_email(message_params)
+    @inquiry = Inquiry.new message_params
+    if @inquiry.save
+      ContactEmailWorker.perform_async inquiry.id
       redirect_to new_message_url
       flash[:success] = "We have received your message and will be in touch soon!"
     else
-      @errors = @message.errors.full_messages
+      @errors = @inquiry.errors.full_messages
       render :new
     end
   end
@@ -19,15 +18,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:name, :email, :body, :item_id)
-  end
-
-  def save_inquiry
-    Buyer.create(
-      name: message_params[:name],
-      email: message_params[:email],
-      comments: message_params[:body],
-      item_id: message_params[:item_id]
-    )
+    params.require(:message).permit(:name, :email, :comments, :item_id)
   end
 end

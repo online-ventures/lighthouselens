@@ -24,8 +24,11 @@ Rails.application.routes.draw do
   get 'about', to: 'messages#new', as: 'about'
   get 'contact/:id', to: 'messages#new', as: 'contact_about_item'
 
-  # Items, lists, resources
-  resources :messages, only: [:new, :create]
+  # Inquiries
+  get 'messages', to: 'messages#new', as: 'message'
+  post 'inquiries', to: 'messages#create', as: 'inquiries'
+
+  # Items
   resources :items, only: [:show]
   get 'categories/:id/items', to: 'categories#index', as: 'categories'
 

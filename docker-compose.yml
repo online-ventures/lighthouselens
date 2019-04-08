@@ -5,7 +5,9 @@ volumes:
   bundle-cache:
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: ./docker/dev/Dockerfile
     environment:
     - RAILS_ENV=development
     - EDITOR=vim
@@ -23,7 +25,9 @@ services:
     stdin_open: true
     tty: true
   sidekiq:
-    build: .
+    build:
+      context: .
+      dockerfile: ./docker/dev/Dockerfile
     command: bundle exec sidekiq
     environment:
       - RAILS_ENV=development

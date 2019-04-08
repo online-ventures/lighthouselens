@@ -27,10 +27,9 @@ ENV BUNDLE_JOBS=2
 ENV BUNDLE_PATH=/bundle
 ENV BUNDLE_BIN=/bundle/bin
 ENV PATH="${BUNDLE_BIN}:${PATH}"
-RUN bundle install
-
-# app files
-COPY . $APP_HOME
 
 # Entrypoint
-ENTRYPOINT ["deploy/docker-entrypoint.sh"]
+ENTRYPOINT ["docker/dev/entrypoint.sh"]
+
+# App files
+COPY . $APP_HOME

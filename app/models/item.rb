@@ -1,9 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :category
-
-  has_many :photos, -> { order(featured: :desc, id: :asc) }
-  has_many :buyers
-
+  has_many :inquiries
   has_many_attached :images
 
   scope :published, -> { where(published: true) }

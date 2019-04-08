@@ -31,4 +31,4 @@
 /config/database.yml
 
 # Ignore deploy settings
-/deploy/kube
+/kube
