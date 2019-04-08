@@ -12,7 +12,7 @@ if [[ $? != 0 ]]; then
   bundle exec rails db:setup && bundle exec rails db:migrate
 fi
 
-if [ $@ = 'sidekiq' ]; then
+if [[ $@ = 'sidekiq' ]]; then
   bundle exec sidekiq
 else
   # Precompile assets here
