@@ -31,11 +31,8 @@ ENV PATH="${BUNDLE_BIN}:${PATH}"
 # app files
 COPY . $APP_HOME
 
-# Precompile assets here
-RUN rails assets:precompile
-
 # Document what port should be exposed
 EXPOSE 3000
 
 # Entrypoint
-ENTRYPOINT ["docker/app/docker-entrypoint.sh"]
+ENTRYPOINT ["docker/app/entrypoint.sh"]

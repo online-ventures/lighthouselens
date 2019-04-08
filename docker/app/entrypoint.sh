@@ -12,5 +12,13 @@ if [[ $? != 0 ]]; then
   rails db:setup && rails db:migrate
 fi
 
-echo "Start puma server"
-bundle exec puma -C config/puma.rb
+if [ $@ = 'sidekiq' ]; then
+  bundle exec sidekiq
+else
+  # Precompile assets here
+  echo "Precompile assets"
+  rails assets:precompile
+
+  echo "Start puma server"
+  bundle exec puma -C config/puma.rb
+fi
