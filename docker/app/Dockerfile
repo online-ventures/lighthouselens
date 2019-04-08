@@ -25,15 +25,14 @@ ENV RACK_ENV production
 
 # setup bundler
 COPY Gemfile* $APP_HOME/
-ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile
 RUN bundle install --jobs 10 --retry 5 --without development test
 
 # Document what port should be exposed
 EXPOSE 3000
 
 # Entrypoint
-COPY ./docker/app/entrypoint.sh /
-ENTRYPOINT ["/entrypoint.sh"]
+COPY ./docker/app/entrypoint.sh .
+ENTRYPOINT ["entrypoint.sh"]
 
 # App files
 COPY . $APP_HOME
