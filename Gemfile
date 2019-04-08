@@ -37,6 +37,7 @@ gem 'kaminari'
 
 # Background jobs
 gem 'sidekiq'
+gem 'sidekiq-status'
 gem 'redis-namespace'
 
 # Console

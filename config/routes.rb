@@ -1,4 +1,10 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+
+  # Sidekiq
+  mount Sidekiq::Web => '/sidekiq'
+  # mount Sidekiq::Web => '/sidekiq', :constraints => SidekiqConstraint.new
 
   # Auth0
   get 'login', to: redirect('auth/auth0')
@@ -25,7 +31,7 @@ Rails.application.routes.draw do
   get 'contact/:id', to: 'messages#new', as: 'contact_about_item'
 
   # Inquiries
-  get 'messages', to: 'messages#new', as: 'message'
+  get 'messages', to: 'messages#new', as: 'new_message'
   post 'inquiries', to: 'messages#create', as: 'inquiries'
 
   # Items

@@ -6,8 +6,8 @@ class MessagesController < ApplicationController
   def create
     @inquiry = Inquiry.new message_params
     if @inquiry.save
-      ContactEmailWorker.perform_async inquiry.id
-      redirect_to new_message_url
+      ContactEmailWorker.perform_async @inquiry.id
+      redirect_to new_message_path
       flash[:success] = "We have received your message and will be in touch soon!"
     else
       @errors = @inquiry.errors.full_messages
@@ -18,6 +18,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:name, :email, :comments, :item_id)
+    params.require(:inquiry).permit(:name, :email, :comments, :item_id)
   end
 end

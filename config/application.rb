@@ -28,6 +28,7 @@ module Lighthouselens
     # the framework and any gems in your application.
 
     config.autoload_paths << Rails.root.join('app/services')
+    config.autoload_paths << Rails.root.join('lib')
 
     # Cookie support
     config.session_store :cookie_store, key: '_lighthouselens_session'

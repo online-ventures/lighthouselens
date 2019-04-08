@@ -5,13 +5,13 @@ class MailgunService
       inquiry = Inquiry.find inquiry_id
       data = inquiry.slice(:name, :email, :comments, :item_id)
       data[:comments] = convert_text_to_html(data[:comments])
-      data[:item] = Item.find(data[:item_id]) if data[:item_id]
+      data[:item] = Item.find(data[:item_id]) if data[:item_id].present?
       html = render_html(template: 'contact', data: data)
       message = build_message(data, html)
-      send_message message
+      send_message message, inquiry
     end
 
-    def send_message(message)
+    def send_message(message, inquiry)
       response = client.send_message(domain, message)
       InquiryResponse.create(
         inquiry: inquiry,
@@ -37,7 +37,7 @@ class MailgunService
     end
 
     def client
-      @@client ||= Mailgun::Client.new Rails.application.credentials.mailgun_api_key
+      @@client ||= Mailgun::Client.new Rails.application.credentials.mailgun[:api_key]
     end
 
     def domain
