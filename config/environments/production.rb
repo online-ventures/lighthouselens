@@ -90,6 +90,6 @@ Rails.application.configure do
 
   # Raven for sentry
   Raven.configure do |config|
-    config.dsn = Rails.application.credentials.sentry.dns
+    config.dsn = Rails.application.credentials.sentry[:dns]
   end
 end
