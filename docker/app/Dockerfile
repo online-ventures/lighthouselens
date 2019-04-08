@@ -25,6 +25,7 @@ ENV RACK_ENV production
 
 # setup bundler
 COPY Gemfile* $APP_HOME/
+ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile
 RUN bundle install --jobs 20 --retry 5 --without development test
 ENV PATH="${BUNDLE_BIN}:${PATH}"
 
