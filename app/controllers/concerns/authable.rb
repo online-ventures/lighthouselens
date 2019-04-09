@@ -1,6 +1,14 @@
 module Authable
   extend ActiveSupport::Concern
 
+  def self.user_can?(session, permission)
+    auth_id = session[:auth_id]
+    return false if auth_id.blank?
+    user = User.where(auth_id: auth_id).first
+    return false if user.blank?
+    user.can? permission
+  end
+
   included do
     helper_method :current_user if respond_to?(:helper_method)
     if respond_to?(:rescue_from)

@@ -9,7 +9,9 @@ RUN apt-get install -y libpq-dev
 RUN apt-get install -y libxml2-dev libxslt1-dev
 
 # for a JS runtime
-RUN apt-get install -y nodejs
+# https://github.com/nodesource/distributions#installation-instructions
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+        && apt-get install -y nodejs
 
 # an editor
 RUN apt-get install -y vim

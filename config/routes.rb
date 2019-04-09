@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'items/list.php', to: redirect { |_p, r| "categories/#{r.GET[:id]}/items" }
   get 'items/index.php', to: redirect { |_p, r| "items/#{r.GET[:id]}" }
 
-  get 'admin', to: 'admin#index', as: 'admin'
+  get 'admin', to: 'items#index', as: 'admin'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'pages#home'

@@ -1,11 +1,16 @@
 class Item < ApplicationRecord
+  include Activeable
+
   belongs_to :category
   has_many :inquiries
   has_many_attached :images
 
   scope :published, -> { where(published: true) }
+  scope :unpublished, -> { where(published: false) }
 
   validate :must_have_photo_to_publish
+
+  before_update :change_draft
 
   def main_photo
     images.first
@@ -22,6 +27,11 @@ class Item < ApplicationRecord
   end
 
   private
+
+  def change_draft
+    return if !draft or !published
+    self.draft = false
+  end
 
   def must_have_photo_to_publish
     if published_changed? and published and main_photo.blank?

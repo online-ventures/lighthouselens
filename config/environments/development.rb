@@ -67,4 +67,7 @@ Rails.application.configure do
 
   # SASS
   config.sass.inline_source_maps = true
+
+  # Web console
+  config.web_console.whitelisted_ips = '172.18.0.0/16'
 end
