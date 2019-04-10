@@ -1,12 +1,4 @@
 steps:
-# Get the previous docker build.  Allows using it as a cache-from
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args:
-    - '-c'
-    - |
-      docker pull gcr.io/$PROJECT_ID/$REPO_NAME:latest || exit 0
-
 # Get the repo
 - name: gcr.io/cloud-builders/git
   args:
