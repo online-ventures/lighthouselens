@@ -12,10 +12,6 @@ else
   # Database migrations
   echo "Running db:migrate"
   bundle exec rails db:migrate
-  if [[ $? != 0 ]]; then
-    echo "== Failed to migrate. Running setup first."
-    bundle exec rails db:setup && bundle exec rails db:migrate
-  fi
 
   # Rails
   echo "Precompile assets"
