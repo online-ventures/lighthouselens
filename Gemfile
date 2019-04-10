@@ -28,6 +28,7 @@ gem 'jwt'
 
 # Admin
 gem 'trestle'
+gem 'trestle-active_storage'
 
 # Services
 gem 'simple_command'

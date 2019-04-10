@@ -256,6 +256,9 @@ GEM
       kaminari (~> 1.1.0)
       railties (>= 4.2.0)
       sass-rails (>= 5.0.6)
+    trestle-active_storage (2.1.1)
+      rails (>= 5.2, < 6)
+      trestle (~> 0.8)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.20)
@@ -301,6 +304,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   trestle
+  trestle-active_storage
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
 

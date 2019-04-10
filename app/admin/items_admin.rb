@@ -23,10 +23,9 @@ Trestle.resource(:items) do
   end
 
   scopes do
-    scope :active, default: true
-    scope :published
-    scope :unpublished
+    scope :active, default: true, label: 'All'
     scope :drafts
+    scope :published
     scope :deleted
   end
 
@@ -35,10 +34,12 @@ Trestle.resource(:items) do
       col(xs: 6) { text_field :title }
       col(xs: 6) { text_field :price }
     end
-    select :category, Category.order(:name).all
+    select :category_id, Category.order(:name).all
     text_area :description
     text_field :comments
     check_box :published
+    select(:main_image_id, item.image_selection) if item.images.any?
+    active_storage_field :images
   end
 
   controller do
