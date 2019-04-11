@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'auth0#logout'
   get 'auth/auth0/callback', to: 'auth0#callback', as: 'auth_callback'
   get 'auth/failure', to: 'auth0#failure', as: 'auth_failure'
-  get 'auth/unauthorized', to: 'auth0#unauthorized', as: 'auth_unauthorized'
+  get 'auth/unauthorized', to: 'auth0#unauthorized', as: 'unauthorized'
 
   # Support old php routes for a while.  Redirect them.
   get 'index.php', to: redirect('/')

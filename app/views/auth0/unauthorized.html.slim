@@ -1,11 +1,5 @@
-- content_for :error do
-  | Not Authorized
-- content_for :message do
-  | Your account does not have have sufficient access to view this page.  You can:
-  ul style="margin: 0 0 2em 35%; list-style-type: disc"
-    li Ask your manager to give you access
-    li Once granted, please logout and log back in
-    li Click a link below to go somewhere else
-  p.center
-    = link_to 'Go back', :back, {class: 'button'}
-    = link_to 'Return to home', root_path, {class: 'button'}
+- content_for :title, 'Not Authorized'
+
+h1 You are not authorized
+
+p The page you requested you are not authorized to access.  Ask someone to give you authorization to access this page.

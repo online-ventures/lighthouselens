@@ -7,9 +7,7 @@ Trestle.configure do |config|
 
   # Authentication
   config.before_action do |controller|
-    unless Authable.user_can? controller.session, 'edit:items'
-      redirect_to Rails.application.routes.url_helpers.login_path
-    end
+    Authable.authorize(controller, 'edit:items')
   end
 
   # Specify a custom image to be used in place of the site title for mobile and

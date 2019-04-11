@@ -16,13 +16,11 @@ class Auth0Controller < ApplicationController
   def failure
     @error = params['error_type'] || params['error']
     @message = params['error_msg'] || params['message']
-    render layout: 'error'
   end
 
   # This handles authorization failures
   def unauthorized
     load_user
-    render layout: 'error'
   end
 
   def logout
