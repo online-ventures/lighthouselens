@@ -17,6 +17,7 @@ module Authable
     # Redirects to unauthorized path if they cannot
     def authorize(controller, permission)
       user = authenticate controller
+      return if user.blank?
       unless user_can?(user, permission)
         controller.redirect_to url_helpers.unauthorized_path
       end
