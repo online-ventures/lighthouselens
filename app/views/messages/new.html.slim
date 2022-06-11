@@ -16,18 +16,3 @@ div class="contact-us"
   p
     strong Phone:
     |  (810) 599 - 5147
-
-  div class="contact-form"
-    = form_for @inquiry do |f|
-      - if @errors
-        div class="error"
-          p Please correct the following:
-          ul
-          - @errors.each do |e|
-            li = e
-
-      = f.text_field :name, placeholder: 'Your name'
-      = f.email_field :email, placeholder: 'your@email.com'
-      = f.text_area :comments, placeholder: 'Write your questions here'
-      = f.hidden_field :item_id
-      = f.submit 'Send'
