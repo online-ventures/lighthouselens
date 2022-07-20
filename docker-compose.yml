@@ -8,12 +8,22 @@ volumes:
     name: lhl-bundle-cache
 services:
   app:
+    build:
+      context: ./docker/dev
+      dockerfile: Dockerfile
     image: lighthouselens/rails
+    command: rails server -b 0.0.0.0
     environment:
-    - RAILS_ENV=development
-    - EDITOR=vim
-    - THOR_MERGE=vim
-    - CONTACT_RECIPIENT=mail@gronows.com
+      APP_NAME: mce
+      NODE_ENV: ${NODE_ENV:-development}
+      RAILS_ENV: ${RAILS_ENV:-development}
+      YARN_CACHE_FOLDER: /app/node_modules/.yarn-cache
+      BOOTSNAP_CACHE_DIR: /usr/local/bundle/_bootsnap
+      HISTFILE: /app/log/.bash_history
+      PSQL_HISTFILE: /app/log/.psql_history
+      EDITOR: vim
+      CONTACT_RECIPIENT: mail@gronows.com
+      REDIS_URL: redis://redis:6379/0
     ports:
     - "3200:3000"
     depends_on:
@@ -24,25 +34,9 @@ services:
     - bundle-cache:/bundle
     stdin_open: true
     tty: true
-  sidekiq:
-    build:
-      context: .
-      dockerfile: ./docker/dev/Dockerfile
-    image: lighthouselens/rails
-    command: bundle exec sidekiq
-    environment:
-      - RAILS_ENV=development
-      - EDITOR=vim
-      - CONTACT_RECIPIENT=mail@gronows.com
-    ports:
-      - "3201:3000"
-    depends_on:
-      - db
-      - redis
-    volumes:
-      - .:/app
-      - bundle-cache:/bundle
   db:
+    environment:
+      POSTGRES_PASSWORD: password
     image: postgres
     volumes:
       - postgres-data:/var/lib/postgresql/data
