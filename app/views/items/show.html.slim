@@ -5,7 +5,7 @@ p class="photos"
     = image_tag url_for(@item.main_photo)
 p &nbsp;
 
-h2 = "##{@item.id}"
+h2.subheading = "Stock Number: ##{@item.id}"
 div class="sectionHeading" Description
 div class="sectionContent"
   p = @item.description.html_safe
