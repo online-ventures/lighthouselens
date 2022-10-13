@@ -23,7 +23,7 @@ gem 'aws-sdk-s3', '~> 1'
 
 # Authentication
 gem 'jwt'
-gem 'omniauth', '~> 1.6.1'
+gem 'omniauth', '~> 1.9.2'
 gem 'omniauth-auth0', '~> 2.0.0'
 
 # Admin
