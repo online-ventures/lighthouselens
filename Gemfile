@@ -16,7 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'mailgun-ruby', '~>1.1.6'
 
 # Image processing - for active storage variants
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 
 # Active storage - Digital Ocean spaces support
 gem 'aws-sdk-s3', '~> 1'
