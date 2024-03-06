@@ -2,7 +2,7 @@ Trestle.resource(:items) do
   remove_action :destroy
 
   menu do
-    item :items, icon: "fa fa-star"
+    item :items, icon: 'fa fa-star'
   end
 
   table do
@@ -13,6 +13,7 @@ Trestle.resource(:items) do
     column :published
     column :created_at, align: :center
     column :updated_at, align: :center
+    column :youtube_url
     actions do |toolbar, instance, admin|
       if instance.active?
         toolbar.link 'Delete', admin.path(:deactivate, id: instance.id), class: 'btn btn-danger'
@@ -46,14 +47,15 @@ Trestle.resource(:items) do
     def activate
       if item = admin.find_instance(params)
         item.activate
-        flash[:message] = "Item successfully restored"
+        flash[:message] = 'Item successfully restored'
       end
       redirect_to admin.path(:index)
     end
+
     def deactivate
       if item = admin.find_instance(params)
         item.deactivate
-        flash[:message] = "Item successfully deleted"
+        flash[:message] = 'Item successfully deleted'
       end
       redirect_to admin.path(:index)
     end
