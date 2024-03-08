@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 volumes:
   postgres-data:
     name: lhl-postgres-data
@@ -25,13 +25,13 @@ services:
       CONTACT_RECIPIENT: mail@gronows.com
       REDIS_URL: redis://redis:6379/0
     ports:
-    - "3200:3000"
+      - "3200:3000"
     depends_on:
-    - db
-    - redis
+      - db
+      - redis
     volumes:
-    - .:/app
-    - bundle-cache:/bundle
+      - .:/app
+      - bundle-cache:/usr/local/bundle
     stdin_open: true
     tty: true
   db:

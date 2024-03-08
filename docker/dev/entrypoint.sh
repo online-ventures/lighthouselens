@@ -5,7 +5,7 @@ if [ "$1" != "bash" ]; then
   echo "Checking bundle..."
   bundle check || {
     echo "Running bundle install..."
-    gem install bundler
+    gem install bundler -v 2.4.22
     bundle
   }
 

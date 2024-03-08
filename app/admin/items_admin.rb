@@ -38,6 +38,7 @@ Trestle.resource(:items) do
     select :category_id, Category.order(:name).all
     text_area :description
     text_field :comments
+    text_field :youtube_url
     check_box :published
     select(:main_image_id, item.image_selection) if item.images.any?
     active_storage_field :images

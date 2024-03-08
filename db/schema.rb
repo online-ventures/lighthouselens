@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_20_201629) do
+ActiveRecord::Schema.define(version: 2024_03_06_004155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2022_07_20_201629) do
     t.datetime "deleted_at"
     t.boolean "draft", default: true
     t.integer "main_image_id"
+    t.string "youtube_url"
   end
 
   create_table "photos", force: :cascade do |t|
