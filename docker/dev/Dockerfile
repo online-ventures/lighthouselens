@@ -1,4 +1,4 @@
-FROM ruby:2.6.1-alpine
+FROM ruby:2.6.10-alpine
 
 RUN apk add --update --no-cache build-base postgresql-dev postgresql-client tzdata nodejs yarn bash git vim shared-mime-info xz-libs
 
