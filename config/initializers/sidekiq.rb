@@ -2,8 +2,7 @@ env = Rails.env.to_sym
 config = Rails.application.credentials.redis[env]
 
 redis = {
-  url: "redis://#{config[:host]}:#{config[:port]}",
-  namespace: config[:namespace]
+  url: "redis://#{config[:host]}:#{config[:port]}/1"
 }
 redis[:password] = config[:password] if config[:password]
 

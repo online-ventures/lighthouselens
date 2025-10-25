@@ -1,4 +1,4 @@
-FROM ruby:2.6.10
+FROM ruby:2.7.8
 
 RUN apt-get update -qq && apt-get install -y libffi-dev build-essential
 
@@ -10,7 +10,7 @@ RUN apt-get install -y libxml2-dev libxslt1-dev
 
 # for a JS runtime
 # https://github.com/nodesource/distributions#installation-instructions
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - \
         && apt-get install -y nodejs
 
 # app directory
@@ -24,7 +24,9 @@ ENV RACK_ENV production
 
 # setup bundler
 COPY Gemfile* $APP_HOME/
-RUN bundle install --jobs 10 --retry 5 --without development test
+RUN gem install bundler:2.4.22
+RUN bundle config set --local without 'development test'
+RUN bundle install --jobs 10 --retry 5
 
 # Document what port should be exposed
 EXPOSE 3000

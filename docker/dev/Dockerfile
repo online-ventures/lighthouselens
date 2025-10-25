@@ -10,7 +10,7 @@ RUN apt-get install -y libxml2-dev libxslt1-dev
 
 # for a JS runtime
 # https://github.com/nodesource/distributions#installation-instructions
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - \
         && apt-get install -y nodejs
 
 # app directory
