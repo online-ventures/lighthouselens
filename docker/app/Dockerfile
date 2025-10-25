@@ -1,6 +1,6 @@
 FROM ruby:2.6.10
 
-RUN apt-get update -qq && apt-get install -y build-essential
+RUN apt-get update -qq && apt-get install -y libffi-dev build-essential
 
 # for postgres
 RUN apt-get install -y libpq-dev
