@@ -60,10 +60,20 @@ Trestle.resource(:items) do
       end
       redirect_to admin.path(:index)
     end
+
+    def delete_image
+      if item = admin.find_instance(params)
+        attachment = item.images.find(params[:attachment_id])
+        attachment.purge
+        flash[:message] = 'Image successfully deleted'
+      end
+      redirect_to admin.path(:edit, id: item.id)
+    end
   end
 
   routes do
     get :deactivate, on: :member
     get :activate, on: :member
+    delete :delete_image, on: :member
   end
 end

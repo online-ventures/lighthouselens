@@ -17,7 +17,7 @@
 
             <div>
               <small><%= attachment.blob.filename %></small>
-              <%# <%= builder.check_box("delete_#{field_name}_#{attachment.blob_id}", label: "Delete this #{field_name.to_s.singularize}") %1> %>
+              <%= link_to "Delete", admin.path(:delete_image, id: instance.id, attachment_id: attachment.id), method: :delete, data: { confirm: "Are you sure you want to delete this image?" }, class: "btn btn-danger btn-sm" %>
             </div>
           </div>
           <hr>
